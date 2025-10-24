@@ -1,60 +1,55 @@
 using ApiRestFul.Domain.Repositories;
 using ApiRestFul.Domain.Models;
 
-namespace ApiRestFul.Application.Services;
-
-public class ProductService
+namespace ApiRestFul.Application.Services
 {
-    private readonly IProductRepository _productRepository;
-
-    public ProductService(IProductRepository productRepository)
+    public class ProductService
     {
-        _productRepository = productRepository;
+        private readonly IProductRepository _productRepository;
+
+        public ProductService(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
+        // Obtener todos los productos
+        public async Task<IEnumerable<Product>> GetAllAsync()
+        {
+            return await _productRepository.GetAllAsync();
+        }
+
+        // Obtener un producto por ID
+        public async Task<Product?> GetByIdAsync(int id)
+        {
+            return await _productRepository.GetByIdAsync(id);
+        }
+
+        // Crear un nuevo producto
+        public async Task<Product> CreateAsync(Product product)
+        {
+            
+            return await _productRepository.CreateAsync(product);
+        }
+
+        // Actualizar un producto existente
+        public async Task<bool> UpdateAsync(Product product)
+        {
+            var existing = await _productRepository.GetByIdAsync(product.Id);
+            if (existing == null)
+                return false;
+
+            await _productRepository.UpdateAsync(product);
+            return true;
+        }
+
+        // Eliminar un producto por ID
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var existing = await _productRepository.GetByIdAsync(id);
+            if (existing == null)
+                return false;
+
+            return await _productRepository.DeleteAsync(id);
+        }
     }
-    
-    public async Task<Product?> GetByIdAsync(int id)
-    {
-        return await _productRepository.GetByIdAsync(id);
-        
-    }
-
-    
-    
-    // public async Task<Product> AddAsync(Product product)
-    // {
-    //     _context.products_tb.Add(product);
-    //     await _context.SaveChangesAsync();
-    //     return product;
-    // }
-
-    
-    
-    // public async Task<Product> UpdateAsync(int Id ,Product product)
-    // {
-    //     var exist = await _context.products_tb.FindAsync(Id);
-    //     if (exist == null)
-    //         return null;
-    //
-    //     exist.ProductName = product.ProductName;
-    //     exist.ProductCode = product.ProductCode;
-    //     exist.Available = product.Available;
-    //     
-    //     await _context.SaveChangesAsync();
-    //     return exist;
-    // }
-
-
-    // public async Task<Product> DeleteAsync(int Id)
-    // {
-    //     var product = await _context.products_tb.FindAsync(Id);
-    //     
-    //     if (product ==  null)
-    //         return null;
-    //     
-    //     _context.products_tb.Remove(product);
-    //     await _context.SaveChangesAsync();
-    //     return product;
-    // }
-
-   
 }
