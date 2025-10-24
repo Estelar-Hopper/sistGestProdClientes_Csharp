@@ -18,5 +18,4 @@ public class OrderDetail
     // To stablish the relation:
     public Order Order { get; set; }
     public Product Product { get; set; }
-    
 }
