@@ -15,6 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ProductService>();
 
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<OrderService>();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
 
@@ -49,3 +52,4 @@ app.MapControllers();
 
 app.Run();
 
+//test commit
