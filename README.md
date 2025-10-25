@@ -22,5 +22,6 @@ dotnet ef migrations add InitialCreate \
  dotnet ef database update \
   --project ApiRestFul.Infrastructure \
   --startup-project ApiRestFul.Api
+  
 ```
 
