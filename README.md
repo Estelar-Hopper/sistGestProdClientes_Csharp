@@ -153,3 +153,17 @@ You should receive JSON responses from the API.
 
 This project was designed as a **DDD practice exercise** to understand how to structure a clean .NET application.  
 It helps developers learn how to separate responsibilities into different layers and work with **Entity Framework Core** and **MySQL** in a real-world scenario.
+
+
+---
+
+## Diagrams
+
+### ER Diagram
+![DER](./docs/ER-Diagram.png)
+
+### UML Diagram
+![D-UML](./docs/UML-Diagram.png)
+
+### Uses Cases Diagram
+![MER](./docs/UC-Diagram.png)
