@@ -44,12 +44,32 @@ Here you can find the **DbContext** class and the **repositories** that handle C
 
 ---
 
+## Installation
+
+Before running the project, install the necessary **NuGet packages** for Entity Framework Core and MySQL.
+
+### Install in the Infrastructure Project
+```bash
+dotnet add ApiRestFul.Infrastructure package Microsoft.EntityFrameworkCore
+dotnet add ApiRestFul.Infrastructure package Microsoft.EntityFrameworkCore.Design
+dotnet add ApiRestFul.Infrastructure package Pomelo.EntityFrameworkCore.MySql
+```
+
+### Install in the API Project
+```bash
+dotnet add ApiRestFul.Api package Microsoft.EntityFrameworkCore.Tools
+```
+
+These packages enable database connections, migrations, and EF Core tools support.
+
+---
+
 ## How to Run the Project
 
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/Estelar-Hopper/sistGestProdClientes_Csharp.git
-
+cd sistGestProdClientes_Csharp
 ```
 
 ### 2. Restore Dependencies
