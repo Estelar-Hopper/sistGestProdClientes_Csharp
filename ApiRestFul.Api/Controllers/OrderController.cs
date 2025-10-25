@@ -38,18 +38,39 @@ namespace ApiRestFul.Api.Controllers
 
         // POST: api/order
         // El enunciado pide "Crear un nuevo pedido con sus productos"
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] Order order)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return BadRequest(ModelState);
+        //
+        //     var createdOrder = await _orderService.CreateAsync(order);
+        //     
+        //     // Devuelve el objeto creado y la URL para consultarlo (GetById)
+        //     return CreatedAtAction(nameof(GetById), new { id = createdOrder.Id }, createdOrder);
+        // }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Order order)
+        public async Task<IActionResult> Create([FromBody] CreateOrderDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            // Mapear manualmente el DTO a tu entidad Order
+            var order = new Order
+            {
+                CustomerId = dto.CustomerId,
+                OrderDate = dto.OrderDate,
+                Status = dto.Status
+            };
+
             var createdOrder = await _orderService.CreateAsync(order);
-            
-            // Devuelve el objeto creado y la URL para consultarlo (GetById)
+
             return CreatedAtAction(nameof(GetById), new { id = createdOrder.Id }, createdOrder);
         }
 
+        
+        
+        
         // PUT: api/order/5
         // El enunciado pide "Actualizar el estado de un pedido"
         [HttpPut("{id:int}")]

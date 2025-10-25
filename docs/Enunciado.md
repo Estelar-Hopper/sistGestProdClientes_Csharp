@@ -1,7 +1,5 @@
 # Taller Célula – Sistema de Gestión de Clientes y Pedidos
 
-Perfecto, Mariana 💪 Aquí tienes tu texto completamente **organizado, limpio y con formato profesional para pegar en un README.md**, incluyendo el punto 4 de la imagen (`Controladores RESTful`) más una **explicación paso a paso** (sin resolverlo) y **recomendaciones**.
-
 ---
 
 # 🧩 Proyecto: API RESTful de Clientes y Pedidos (.NET 8)
@@ -149,5 +147,3 @@ Cada método representa una **operación CRUD** sobre las entidades principales.
 * Usa `DTOs` (Data Transfer Objects) si deseas mejorar la organización entre la capa `Api` y `Application`.
 
 ---
-
-¿Quieres que te prepare ahora una **plantilla base en código** con los dos controladores (`CustomersController` y `OrdersController`) vacíos, listos para llenar paso a paso con los endpoints de la tabla? Así tendrías el esqueleto para continuar.
