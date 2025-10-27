@@ -34,16 +34,37 @@ namespace ApiRestFul.Api.Controllers
             return Ok(detail);
         }
 
-        // POST: api/orderdetail
+        // // POST: api/orderdetail
+        // [HttpPost]
+        // public async Task<ActionResult<OrderDetail>> Create([FromBody] OrderDetail detail)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return BadRequest(ModelState);
+        //
+        //     var created = await _orderDetailService.CreateAsync(detail);
+        //     return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+        // }
+
         [HttpPost]
-        public async Task<ActionResult<OrderDetail>> Create([FromBody] OrderDetail detail)
+        public async Task<IActionResult> Create([FromBody] CreateOrderDetailDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var created = await _orderDetailService.CreateAsync(detail);
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+            // Mapear manualmente el DTO a tu entidad Order
+            var orderDetail = new OrderDetail
+            {
+                OrderId = dto.OrderId,
+                ProductId = dto.ProductId,
+                Quantity = dto.Quantity,
+                UnitPrice = dto.UnitPrice
+            };
+            
+            var createdOrderDetail = await _orderDetailService.CreateAsync(orderDetail);
+
+            return CreatedAtAction(nameof(GetById), new { id = createdOrderDetail.Id }, createdOrderDetail);
         }
+        
 
         // PUT: api/orderdetail/{id}
         [HttpPut("{id}")]
